@@ -1,1 +1,123 @@
-/* You can add global styles to this file, and also import other style files */
+@import './app/styles/company-colors.scss';
+@font-face {
+  font-family: 'Mostar Sofia Pro';
+  src: url('./assets/fonts/Sofia\ Pro\ Regular\ Az.otf') format('opentype');
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Mostar Sofia Pro', serif;
+  margin: 0;
+  padding: 0;
+  background-color: $vyne-light-background-color;
+  color: $vyne-black;
+}
+
+.footer-wrapper {
+  margin-top: auto;
+  height: 60px;
+  background-color: #f8f9fa;
+}
+
+h2,
+p,
+a,
+abbr,
+acronym,
+address,
+applet,
+article,
+aside,
+audio,
+b,
+big,
+blockquote,
+body,
+canvas,
+caption,
+center,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+html,
+i,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+menu,
+nav,
+object,
+ol,
+output,
+p,
+pre,
+q,
+ruby,
+s,
+samp,
+section,
+small,
+span,
+strike,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+tt,
+u,
+ul,
+var,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.wrapper,
+.header-wrapper,
+.transaction-wrapper,
+.footer-wrapper {
+  max-width: 1248px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}

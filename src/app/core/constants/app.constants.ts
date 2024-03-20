@@ -1,3 +1,6 @@
+/* app title [TM 20/03/24] */
+export const appTitle = 'Vyne | Transaction Management';
+
 /* api auth details [TM 19/03/24] */
 export const apiUsername = 'user';
 export const apiPassword = 'userPass';
