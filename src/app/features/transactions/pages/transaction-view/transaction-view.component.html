@@ -1,0 +1,10 @@
+<div class="transaction-wrapper">
+  <app-filters (filterChange)="filterTransactions($event)"></app-filters>
+  <app-table
+    (pageChange)="changePage($event)"
+    [loading]="loading"
+    [transactions]="transactions"
+    [paymentTransactions]="paymentTransactions"
+    [pageToShow]="currentPage"
+  ></app-table>
+</div>
