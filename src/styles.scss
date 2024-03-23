@@ -1,5 +1,6 @@
 @import './app/styles/company-colors.scss';
-@import 'primeng/resources/themes/lara-light-blue/theme.css';
+// @import 'primeng/resources/themes/soho-light/theme.css';
+@import './app/styles/prime-theme.scss';
 @import 'primeng/resources/primeng.css';
 @font-face {
   font-family: 'Mostar Sofia Pro';
@@ -7,6 +8,7 @@
 }
 * {
   box-sizing: border-box;
+  font-family: 'Mostar Sofia Pro', serif;
 }
 
 body {
@@ -21,97 +23,6 @@ body {
   margin-top: auto;
   height: 60px;
   background-color: #f8f9fa;
-}
-
-h2,
-p,
-a,
-abbr,
-acronym,
-address,
-applet,
-article,
-aside,
-audio,
-b,
-big,
-blockquote,
-body,
-canvas,
-caption,
-center,
-cite,
-code,
-dd,
-del,
-details,
-dfn,
-div,
-dl,
-dt,
-em,
-embed,
-fieldset,
-figcaption,
-figure,
-footer,
-form,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-header,
-hgroup,
-html,
-i,
-iframe,
-img,
-ins,
-kbd,
-label,
-legend,
-li,
-mark,
-menu,
-nav,
-object,
-ol,
-output,
-p,
-pre,
-q,
-ruby,
-s,
-samp,
-section,
-small,
-span,
-strike,
-strong,
-sub,
-summary,
-sup,
-table,
-tbody,
-td,
-tfoot,
-th,
-thead,
-time,
-tr,
-tt,
-u,
-ul,
-var,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
 }
 
 .wrapper,

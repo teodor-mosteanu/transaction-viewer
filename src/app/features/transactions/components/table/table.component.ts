@@ -31,12 +31,12 @@ export class TableComponent {
   currentPage = 0;
 
   changePage(event: TableLazyLoadEvent) {
-    if (event.first !== undefined && event.rows) {
-      const page = event.first === 0 ? 0 : event.first / event.rows;
-      if (page !== this.currentPage) {
-        this.currentPage = page;
-        this.pageChange.emit(this.currentPage);
-      }
+    const first = event.first ?? 0;
+    const rows = event.rows ?? 1;
+    const page = first === 0 ? 0 : first / rows;
+    if (page !== this.currentPage) {
+      this.currentPage = page;
+      this.pageChange.emit(this.currentPage);
     }
   }
 }
