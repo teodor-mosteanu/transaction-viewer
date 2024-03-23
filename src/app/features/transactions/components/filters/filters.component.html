@@ -12,6 +12,7 @@
     dateFormat="yy.mm.dd"
     [showIcon]="true"
     [maxDate]="filterFormGroup.get('endDate')?.value || today"
+    [showButtonBar]="true"
   ></p-calendar>
   <span>TO</span>
   <label for="dateFilter" class="screenreader-text">Date created</label>
@@ -21,7 +22,8 @@
     formControlName="endDate"
     dateFormat="yy.mm.dd"
     [showIcon]="true"
-    [minDate]="filterFormGroup.get('startDate')?.value || startDay"
+    [minDate]="filterFormGroup.get('startDate')?.value || minStartDate"
+    [showButtonBar]="true"
   ></p-calendar>
   <p-dropdown
     ariaLabel="Select a status filter"

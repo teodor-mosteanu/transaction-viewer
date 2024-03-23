@@ -14,7 +14,7 @@ import { PaymentStatus } from '../../../../core/constants/app.constants';
 })
 export class FiltersComponent implements OnInit {
   @Output() filterChange = new EventEmitter();
-  startDay = new Date('2020-01-01');
+  minStartDate = new Date(new Date('1970-01-01'));
   paymentStatuses = Object.values(PaymentStatus);
   today = new Date();
   filterFormGroup = new FormGroup({
