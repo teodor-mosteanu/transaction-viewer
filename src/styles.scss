@@ -1,4 +1,6 @@
 @import './app/styles/company-colors.scss';
+@import 'primeng/resources/themes/lara-light-blue/theme.css';
+@import 'primeng/resources/primeng.css';
 @font-face {
   font-family: 'Mostar Sofia Pro';
   src: url('./assets/fonts/Sofia\ Pro\ Regular\ Az.otf') format('opentype');
@@ -120,4 +122,9 @@ video {
   margin: 0 auto;
   padding-left: 24px;
   padding-right: 24px;
+}
+
+.screenreader-text {
+  position: absolute;
+  left: -9999px;
 }

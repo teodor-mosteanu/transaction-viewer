@@ -3,32 +3,40 @@ import { Injectable } from '@angular/core';
 import { PaginatedTransactions } from '../../../core/interfaces/payment-transaction';
 import { Observable } from 'rxjs';
 import { LoggerService } from '../../../core/services/logger.service';
+import {
+  defaultPageSize,
+  transationApiUrl,
+} from '../../../core/constants/app.constants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TransactionsService {
+  today = new Date();
   constructor(
     private http: HttpClient,
     private loggerService: LoggerService,
   ) {}
 
-  getTransactions(
-    createdAtStart: string,
-    createdAtEnd: string,
-    page: number,
-    size = 5,
+  getFilteredTransactions(
+    page?: number,
+    createdAtStart?: string,
+    createdAtEnd?: string,
+    status?: string,
   ): Observable<PaginatedTransactions> {
+    const size = defaultPageSize;
     const params = {
-      createdAtStart,
-      createdAtEnd,
-      page: page.toString(),
-      size: size.toString(),
+      ...(createdAtStart ? { createdAtStart } : {}),
+      ...(createdAtEnd ? { createdAtEnd } : {}),
+      ...(page ? { page } : {}),
+      ...(status ? { status } : {}),
+      size,
     };
     this.loggerService.log('Fetching transactions');
-    return this.http.get<PaginatedTransactions>(
-      'http://localhost:8080/api/v1/payments',
-      { params },
-    );
+    return this.http.get<PaginatedTransactions>(transationApiUrl, { params });
+  }
+
+  getAllTransactions(): Observable<PaginatedTransactions> {
+    return this.http.get<PaginatedTransactions>(transationApiUrl);
   }
 }
