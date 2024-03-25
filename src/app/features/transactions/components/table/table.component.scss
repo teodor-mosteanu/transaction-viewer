@@ -1,0 +1,17 @@
+@import '../../../../styles/elements-colors.scss';
+@import '../../../../styles/mixins/colors.scss';
+
+/*Table text highlight [TM 25/03/24] */
+td::selection {
+  background: $vyne-highlight-text-color;
+  color: $vyne-light-background-color;
+}
+
+/* Paginator buttons [TM 25/03/24] */
+.p-paginator-pages .p-link:not(.p-highlight){
+  color: $vyne-paragraph-text-color;
+}
+
+td {
+  @include transactionStatusColors;
+}

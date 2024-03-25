@@ -1,11 +1,13 @@
 @import './app/styles/company-colors.scss';
-// @import 'primeng/resources/themes/soho-light/theme.css';
-@import './app/styles/prime-theme.scss';
+@import 'primeng/resources/themes/soho-light/theme.css';
+@import './app/styles/prime-theme-elements.scss';
 @import 'primeng/resources/primeng.css';
+
 @font-face {
   font-family: 'Mostar Sofia Pro';
   src: url('./assets/fonts/Sofia\ Pro\ Regular\ Az.otf') format('opentype');
 }
+
 * {
   box-sizing: border-box;
   font-family: 'Mostar Sofia Pro', serif;
@@ -19,12 +21,6 @@ body {
   color: $vyne-black;
 }
 
-.footer-wrapper {
-  margin-top: auto;
-  height: 60px;
-  background-color: #f8f9fa;
-}
-
 .wrapper,
 .header-wrapper,
 .transaction-wrapper,
@@ -34,7 +30,10 @@ body {
   padding-left: 24px;
   padding-right: 24px;
 }
-
+// .container {
+//   padding-top:20px;
+//   padding-bottom: 20px;
+// }
 .screenreader-text {
   position: absolute;
   left: -9999px;

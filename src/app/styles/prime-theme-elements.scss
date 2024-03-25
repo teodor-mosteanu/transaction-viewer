@@ -1,0 +1,10 @@
+@import 'elements-colors.scss';
+
+.p-button{
+  background-color: $vyne-button-color;
+  color: $vyne-light-background-color;
+  border: none;
+  &:hover{
+    background-color: $vyne-button-color-hover;
+  }
+}

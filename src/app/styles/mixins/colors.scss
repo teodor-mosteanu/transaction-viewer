@@ -1,0 +1,17 @@
+@mixin transactionStatusColors {
+  &.captured {
+    color: blue;
+  }
+  &.completed {
+    color: green;
+  }
+  &.failed {
+    color: red;
+  }
+  &.created {
+    color: orange;
+  }
+  &.settled {
+    color: purple;
+  }
+}

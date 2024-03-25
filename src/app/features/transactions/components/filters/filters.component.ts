@@ -4,11 +4,12 @@ import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { PaymentStatus } from '../../../../core/constants/app.constants';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-filters',
   standalone: true,
-  imports: [ReactiveFormsModule, DropdownModule, ButtonModule, CalendarModule],
+  imports: [ReactiveFormsModule, DropdownModule, ButtonModule, CalendarModule, CommonModule],
   templateUrl: './filters.component.html',
   styleUrl: './filters.component.scss',
 })
