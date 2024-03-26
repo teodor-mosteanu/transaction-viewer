@@ -20,8 +20,8 @@ export class FiltersComponent {
   today = new Date();
   filterFormGroup = new FormGroup({
     selectedStatus: new FormControl(),
-    startDate: new FormControl(new Date('2021-01-01')),
-    endDate: new FormControl(new Date(this.today)),
+    startDate: new FormControl(),
+    endDate: new FormControl(),
   });
 
   filterTransactions() {

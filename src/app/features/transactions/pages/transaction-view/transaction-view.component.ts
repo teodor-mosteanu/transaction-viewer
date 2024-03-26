@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { PaymentStatus } from '../../../../core/constants/app.constants';
 import {
@@ -10,15 +10,18 @@ import { FiltersComponent } from '../../components/filters/filters.component';
 import { TableComponent } from '../../components/table/table.component';
 import { TransactionsService } from '../../services/transactions.service';
 import { TransactionFilters } from '../../interfaces/filters.interface';
+import { PlaceholderComponent } from '../../components/placeholder/placeholder.component';
+import { catchError, of } from 'rxjs';
+
 
 @Component({
   selector: 'app-transaction-view',
   standalone: true,
-  imports: [TableModule, CommonModule, FiltersComponent, TableComponent],
+  imports: [TableModule, CommonModule, FiltersComponent, TableComponent, PlaceholderComponent],
   templateUrl: './transaction-view.component.html',
   styleUrl: './transaction-view.component.scss',
 })
-export class TransactionViewComponent implements OnInit {
+export class TransactionViewComponent {
   transactions: PaginatedTransactions | undefined = undefined;
   paymentTransactions: PaymentTransaction[];
 
@@ -29,23 +32,23 @@ export class TransactionViewComponent implements OnInit {
   createdDateAtEnd: string | undefined = undefined;
   filterStatus: PaymentStatus | undefined = undefined;
 
+  placeholderContent = {
+    title: 'No filter selected',
+    message: 'Begin by creating a filter to view transactions. Click apply with empty filters to get all data.',
+  };
+
   constructor(private transactionsService: TransactionsService) {}
 
-  ngOnInit() {
-    this.getAllTransactions();
+  setLoadingState(isLoading: boolean): void {
+    this.loading = isLoading;
   }
 
-  getAllTransactions() {
-    this.loading = true;
-    this.transactionsService.getAllTransactions().subscribe(data => {
-      this.transactions = data;
-      this.paymentTransactions = data.items;
-      this.loading = false;
-    });
+  setPlaceholderContent(title: string, message: string): void {
+    this.placeholderContent = { title, message };
   }
 
-  getTransactions() {
-    this.loading = true;
+  getTransactions(): void {
+    this.setLoadingState(true);
     this.transactionsService
       .getFilteredTransactions(
         this.currentPage,
@@ -53,10 +56,27 @@ export class TransactionViewComponent implements OnInit {
         this.createdDateAtEnd,
         this.filterStatus,
       )
+      .pipe(
+        catchError(error => {
+          this.setLoadingState(false);
+          this.setPlaceholderContent(
+            'An error occurred',
+            'An error occurred while fetching transactions. Please try again later.'
+          );
+          return of(null);
+        })
+      )
       .subscribe(data => {
-        this.transactions = data;
-        this.paymentTransactions = data.items;
-        this.loading = false;
+        if (data && data.items.length === 0) {
+          this.setPlaceholderContent(
+            'No transactions found',
+            'No transactions found with the selected filter'
+          );
+        } else if (data) {
+          this.transactions = data;
+          this.paymentTransactions = data.items;
+          this.setLoadingState(false);
+        }
       });
   }
 
@@ -68,8 +88,8 @@ export class TransactionViewComponent implements OnInit {
     this.getTransactions();
   }
 
-  changePage(event: number) {
-    this.currentPage = event;
+  changePage(page: number): void {
+    this.currentPage = page;
     this.getTransactions();
   }
 }

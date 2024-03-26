@@ -12,25 +12,25 @@
   [loading]="loading"
   [(first)]="pageToShow"
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-  styleClass="p-datatable-gridlines"
+  styleClass="p-datatable-striped"
 >
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="amount">
-        Amount <p-sortIcon field="amount"></p-sortIcon>
+      <th>
+        Amount
       </th>
-      <th pSortableColumn="createdAt">
-        Created At <p-sortIcon field="createdAt"></p-sortIcon>
+      <th>
+        Created At
       </th>
-      <th pSortableColumn="currency">
-        Currency <p-sortIcon field="currency"></p-sortIcon>
+      <th>
+        Currency
       </th>
-      <th pSortableColumn="description">
-        Description <p-sortIcon field="description"></p-sortIcon>
+      <th>
+        Description
       </th>
-      <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
-      <th pSortableColumn="status">
-        Status <p-sortIcon field="status"></p-sortIcon>
+      <th >ID</th>
+      <th>
+        Status
       </th>
     </tr>
   </ng-template>

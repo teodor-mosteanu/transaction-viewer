@@ -1,3 +1,5 @@
+@import "../company-colors.scss";
+
 @mixin transactionStatusColors {
   &.captured {
     color: blue;
