@@ -11,7 +11,7 @@ import { TableComponent } from '../../components/table/table.component';
 import { TransactionsService } from '../../services/transactions.service';
 import { TransactionFilters } from '../../interfaces/filters.interface';
 import { PlaceholderComponent } from '../../components/placeholder/placeholder.component';
-import { catchError, of } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 
 
 @Component({
@@ -54,25 +54,26 @@ export class TransactionViewComponent {
         this.filterStatus,
       )
       .pipe(
-        catchError(error => {
-          this.setLoadingState(false);
-          this.setPlaceholderContent(
-            PLACEHOLDER_CONTENT.ERROR
-          );
-          return of(null);
-        })
+        catchError(() => this.handleError())
       )
-      .subscribe(data => {
-        if (data && data.items.length === 0) {
-          this.setPlaceholderContent(
-            PLACEHOLDER_CONTENT.NO_TRANSACTIONS
-          );
-        } else if (data) {
-          this.transactions = data;
-          this.paymentTransactions = data.items;
-          this.setLoadingState(false);
-        }
-      });
+      .subscribe(data => this.handleData(data));
+  }
+
+  private handleData(data: PaginatedTransactions | null): void {
+    this.setLoadingState(false);
+    if (data) {
+      this.transactions = data;
+      this.paymentTransactions = data.items;
+      if (data.items.length === 0) {
+        this.setPlaceholderContent(PLACEHOLDER_CONTENT.NO_TRANSACTIONS);
+      }
+    }
+  }
+
+  private handleError(): Observable<null> {
+    this.setLoadingState(false);
+    this.setPlaceholderContent(PLACEHOLDER_CONTENT.ERROR);
+    return of(null);
   }
 
   filterTransactions(filters: TransactionFilters): void {
