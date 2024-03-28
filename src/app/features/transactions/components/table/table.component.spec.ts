@@ -7,7 +7,7 @@ describe('TableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TableComponent],
+      imports: [TableComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TableComponent);
@@ -16,7 +16,7 @@ describe('TableComponent', () => {
   });
 
   it('should emit pageChange event when changePage is called', () => {
-    const event = { first: 0, rows: 10 };
+    const event = { first: 2, rows: 10 };
     const emitSpy = spyOn(component.pageChange, 'emit');
     component.changePage(event);
     expect(emitSpy).toHaveBeenCalledWith(component.currentPage);

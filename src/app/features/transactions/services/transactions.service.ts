@@ -12,7 +12,6 @@ import {
   providedIn: 'root',
 })
 export class TransactionsService {
-  today = new Date();
   constructor(
     private http: HttpClient,
     private loggerService: LoggerService,
@@ -37,6 +36,7 @@ export class TransactionsService {
   }
 
   getAllTransactions(): Observable<PaginatedTransactions> {
+    this.loggerService.log('Fetching all transactions');
     return this.http.get<PaginatedTransactions>(transationApiUrl);
   }
 }

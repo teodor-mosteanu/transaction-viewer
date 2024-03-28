@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TableModule } from 'primeng/table';
-import { PaymentStatus } from '../../../../core/constants/app.constants';
+import { PaymentStatus, PLACEHOLDER_CONTENT } from '../../../../core/constants/app.constants';
 import {
   PaginatedTransactions,
   PaymentTransaction,
@@ -32,10 +32,7 @@ export class TransactionViewComponent {
   createdDateAtEnd: string | undefined = undefined;
   filterStatus: PaymentStatus | undefined = undefined;
 
-  placeholderContent = {
-    title: 'No filter selected',
-    message: 'Begin by creating a filter to view transactions. Click apply with empty filters to get all data.',
-  };
+  placeholderContent = PLACEHOLDER_CONTENT.NO_FILTER;
 
   constructor(private transactionsService: TransactionsService) {}
 
@@ -43,8 +40,8 @@ export class TransactionViewComponent {
     this.loading = isLoading;
   }
 
-  setPlaceholderContent(title: string, message: string): void {
-    this.placeholderContent = { title, message };
+  setPlaceholderContent(content: typeof PLACEHOLDER_CONTENT[keyof typeof PLACEHOLDER_CONTENT]): void {
+    this.placeholderContent = content;
   }
 
   getTransactions(): void {
@@ -60,8 +57,7 @@ export class TransactionViewComponent {
         catchError(error => {
           this.setLoadingState(false);
           this.setPlaceholderContent(
-            'An error occurred',
-            'An error occurred while fetching transactions. Please try again later.'
+            PLACEHOLDER_CONTENT.ERROR
           );
           return of(null);
         })
@@ -69,8 +65,7 @@ export class TransactionViewComponent {
       .subscribe(data => {
         if (data && data.items.length === 0) {
           this.setPlaceholderContent(
-            'No transactions found',
-            'No transactions found with the selected filter'
+            PLACEHOLDER_CONTENT.NO_TRANSACTIONS
           );
         } else if (data) {
           this.transactions = data;

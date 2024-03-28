@@ -19,3 +19,19 @@ export enum PaymentStatus {
   FAILED = 'FAILED',
   SETTLED = 'SETTLED',
 }
+
+/* placeholder messages [TM 28/03/24] */
+export const PLACEHOLDER_CONTENT = {
+  NO_FILTER: {
+    title: 'No filter selected',
+    message: 'Begin by creating a filter to view transactions. Click apply with empty filters to get all data.',
+  },
+  NO_TRANSACTIONS: {
+    title: 'No transactions found',
+    message: 'No transactions found with the selected filter',
+  },
+  ERROR: {
+    title: 'An error occurred',
+    message: 'An error occurred while fetching transactions. Please try again later.',
+  },
+};
