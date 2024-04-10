@@ -7,6 +7,5 @@ export const routes: Routes = [
     path: '**',
     component: TransactionViewComponent,
     title: appTitle,
-    pathMatch: 'full',
   },
 ];
