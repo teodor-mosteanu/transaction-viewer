@@ -2,7 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TransactionViewComponent } from './transaction-view.component';
 import { TransactionsService } from '../../services/transactions.service';
-import { PaymentStatus, PLACEHOLDER_CONTENT } from '../../../../core/constants/app.constants';
+import {
+  PaymentStatus,
+  PLACEHOLDER_CONTENT,
+} from '../../../../core/constants/app.constants';
 import { of } from 'rxjs';
 import { TransactionFilters } from '../../interfaces/filters.interface';
 
@@ -13,10 +16,16 @@ describe('TransactionViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ TransactionViewComponent ],
-      providers: [ { provide: TransactionsService, useValue: jasmine.createSpyObj('TransactionsService', ['getFilteredTransactions']) } ]
-    })
-    .compileComponents();
+      imports: [TransactionViewComponent],
+      providers: [
+        {
+          provide: TransactionsService,
+          useValue: jasmine.createSpyObj('TransactionsService', [
+            'getFilteredTransactions',
+          ]),
+        },
+      ],
+    }).compileComponents();
 
     transactionsService = TestBed.inject(TransactionsService);
     fixture = TestBed.createComponent(TransactionViewComponent);
@@ -33,11 +42,15 @@ describe('TransactionViewComponent', () => {
 
   it('should set placeholder content', () => {
     component.setPlaceholderContent(PLACEHOLDER_CONTENT.NO_TRANSACTIONS);
-    expect(component.placeholderContent).toEqual(PLACEHOLDER_CONTENT.NO_TRANSACTIONS);
+    expect(component.placeholderContent).toEqual(
+      PLACEHOLDER_CONTENT.NO_TRANSACTIONS,
+    );
   });
 
   it('should get transactions', () => {
-    const getFilteredTransactionsSpy = (transactionsService.getFilteredTransactions as jasmine.Spy).and.returnValue(of({ items: [] }));
+    const getFilteredTransactionsSpy = (
+      transactionsService.getFilteredTransactions as jasmine.Spy
+    ).and.returnValue(of({ items: [] }));
     component.getTransactions();
     expect(getFilteredTransactionsSpy).toHaveBeenCalled();
   });
@@ -46,12 +59,16 @@ describe('TransactionViewComponent', () => {
     const filters: TransactionFilters = {
       startDate: new Date(),
       endDate: new Date(),
-      selectedStatus: PaymentStatus.COMPLETED
+      selectedStatus: PaymentStatus.COMPLETED,
     };
     const getTransactionsSpy = spyOn(component, 'getTransactions');
     component.filterTransactions(filters);
-    expect(component.createdDateAtStart).toEqual(filters.startDate?.toISOString().split('T')[0]);
-    expect(component.createdDateAtEnd).toEqual(filters.endDate?.toISOString().split('T')[0]);
+    expect(component.createdDateAtStart).toEqual(
+      filters.startDate?.toISOString().split('T')[0],
+    );
+    expect(component.createdDateAtEnd).toEqual(
+      filters.endDate?.toISOString().split('T')[0],
+    );
     expect(component.filterStatus).toEqual(filters.selectedStatus);
     expect(getTransactionsSpy).toHaveBeenCalled();
   });

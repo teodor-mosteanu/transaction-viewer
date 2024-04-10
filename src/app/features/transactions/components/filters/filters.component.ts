@@ -9,7 +9,13 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-filters',
   standalone: true,
-  imports: [ReactiveFormsModule, DropdownModule, ButtonModule, CalendarModule, CommonModule],
+  imports: [
+    ReactiveFormsModule,
+    DropdownModule,
+    ButtonModule,
+    CalendarModule,
+    CommonModule,
+  ],
   templateUrl: './filters.component.html',
   styleUrl: './filters.component.scss',
 })

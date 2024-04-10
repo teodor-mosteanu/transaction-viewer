@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TableModule } from 'primeng/table';
-import { PaymentStatus, PLACEHOLDER_CONTENT } from '../../../../core/constants/app.constants';
+import {
+  PaymentStatus,
+  PLACEHOLDER_CONTENT,
+} from '../../../../core/constants/app.constants';
 import {
   PaginatedTransactions,
   PaymentTransaction,
@@ -13,11 +16,16 @@ import { TransactionFilters } from '../../interfaces/filters.interface';
 import { PlaceholderComponent } from '../../components/placeholder/placeholder.component';
 import { catchError, Observable, of } from 'rxjs';
 
-
 @Component({
   selector: 'app-transaction-view',
   standalone: true,
-  imports: [TableModule, CommonModule, FiltersComponent, TableComponent, PlaceholderComponent],
+  imports: [
+    TableModule,
+    CommonModule,
+    FiltersComponent,
+    TableComponent,
+    PlaceholderComponent,
+  ],
   templateUrl: './transaction-view.component.html',
   styleUrl: './transaction-view.component.scss',
 })
@@ -40,7 +48,9 @@ export class TransactionViewComponent {
     this.loading = isLoading;
   }
 
-  setPlaceholderContent(content: typeof PLACEHOLDER_CONTENT[keyof typeof PLACEHOLDER_CONTENT]): void {
+  setPlaceholderContent(
+    content: (typeof PLACEHOLDER_CONTENT)[keyof typeof PLACEHOLDER_CONTENT],
+  ): void {
     this.placeholderContent = content;
   }
 
@@ -53,9 +63,7 @@ export class TransactionViewComponent {
         this.createdDateAtEnd,
         this.filterStatus,
       )
-      .pipe(
-        catchError(() => this.handleError())
-      )
+      .pipe(catchError(() => this.handleError()))
       .subscribe(data => this.handleData(data));
   }
 

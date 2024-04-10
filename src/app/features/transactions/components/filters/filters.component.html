@@ -1,9 +1,8 @@
-
-  <form
-    class="filters-form"
-    [formGroup]="filterFormGroup"
-    (ngSubmit)="filterTransactions()"
-  >
+<form
+  class="filters-form"
+  [formGroup]="filterFormGroup"
+  (ngSubmit)="filterTransactions()"
+>
   <div class="date-filters">
     <span>Search dates: </span>
     <label for="dateFilter" class="screenreader-text">Date created</label>
@@ -46,5 +45,4 @@
   <div class="submit-button">
     <p-button label="Apply" type="submit"></p-button>
   </div>
-  </form>
-
+</form>
